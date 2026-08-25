@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSM Deep Dive | 合同服务边际深度专题</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="top-nav">
+  <div class="brand">IFRS17 <span>Bilingual Forum</span></div>
+  <div class="nav-links">
+    <a href="index.html">Home</a><a href="01-glossary.html">Glossary</a><a href="02-fundamentals.html">Fundamentals</a><a href="03-measurement.html">Measurement</a><a href="04-csm.html" class="active">CSM</a><a href="05-presentation.html">Presentation</a><a href="06-reading.html">Reading</a><a href="07-quiz.html">Quiz</a><a href="08-global.html">Global</a>
+    <a href="09-cas25-english.html">CAS25</a>
+    <a href="10-ifrs17-chinese.html">IFRS17 Std</a>
+    <a href="11-financial-statements.html">Report Format</a>
+    <a href="12-illustrative-examples.html">IE Examples</a>
+    <a href="13-hkfrs17.html">HKFRS17</a>
+  </div>
+</nav>
+<div class="breadcrumb"><a href="index.html">Home</a> <span class="sep">/</span> Module 2 · CSM</div>
+<div class="container">
+
+<div class="hero">
+  <h1>Lesson 3: Contractual Service Margin (CSM)</h1>
+  <div class="en-title">合同服务边际 — 六大专论 · 滚动计量 · 吸收机制</div>
+  <p class="subtitle">Lesson 3 of 4 | Level: L3 Advanced | Duration: 40 min | Vocabulary: 20 terms</p>
+  <div class="hero-tags">
+    <span class="tag">CSM Initial Measurement</span>
+    <span class="tag">Roll-forward</span>
+    <span class="tag">Locked-in Rate</span>
+    <span class="tag">Absorption Mechanism</span>
+    <span class="tag">Coverage Units</span>
+    <span class="tag">Numerical Example</span>
+  </div>
+</div>
+
+<div class="section">
+<h2>1. What is CSM? <span class="en">什么是合同服务边际？</span></h2>
+<div class="callout info"><div class="title">Learning Objectives / 学习目标</div>
+<p>Understand the nature of CSM as unearned profit, its non-negative constraint, initial measurement logic, and its role as a buffer for future service-related changes. / 理解CSM的本质（未实现利润）、不能为负的约束条件、初始计量逻辑及其作为未来服务相关变动缓冲器的作用。</p></div>
+
+<div class="trilingual">
+<div class="col col-cn"><div class="lang-tab">中文</div>
+<p><strong>合同服务边际 (Contractual Service Margin, CSM)</strong> 是 IFRS 17 中最重要的概念之一，代表了保险合同组中尚未实现的利润。</p>
+<p>在初始确认时：</p>
+<ul>
+<li>如果 <strong>FCF + RA &lt; 0</strong>（即履约现金流为净现金流入，合同处于盈利状态），则 <strong>CSM = -(FCF + RA)</strong>，将未实现利润确认为 CSM。</li>
+<li>如果 <strong>FCF + RA &ge; 0</strong>（即履约现金流为净现金流出，合同处于亏损状态），则 <strong>CSM = 0</strong>，亏损立即计入损益。此类合同称为"亏损性合同"（onerous contract）。</li>
+</ul>
+<p>CSM 代表企业将在未来提供服务时逐步释放的利润，在每个报告日通过<strong>滚动方式</strong>（roll-forward）进行后续计量，并按<strong>保障责任单元</strong>（coverage units）摊销计入损益。</p>
+<p><strong>关键约束</strong>：CSM 不得为负数——如果合同组变为亏损，首先冲减 CSM 至零，超出部分立即确认亏损。</p>
+</div>
+<div class="col col-en"><div class="lang-tab">English</div>
+<p><strong>Contractual Service Margin (CSM)</strong> is one of the most important concepts in IFRS 17. It represents the unearned profit of a group of insurance contracts.</p>
+<p>At initial recognition:</p>
+<ul>
+<li>If <strong>FCF + RA &lt; 0</strong> (i.e., fulfilment cash flows represent a net inflow; the contract is profitable), then <strong>CSM = -(FCF + RA)</strong>, recognizing the unearned profit as CSM.</li>
+<li>If <strong>FCF + RA &ge; 0</strong> (i.e., fulfilment cash flows represent a net outflow; the contract is loss-making), then <strong>CSM = 0</strong>, and the loss is recognized immediately in profit or loss. Such contracts are called "onerous contracts."</li>
+</ul>
+<p>The CSM represents profit that the entity will gradually release in profit or loss as it provides services. At each reporting date, the CSM is measured on a <strong>roll-forward basis</strong> and amortized into profit or loss based on <strong>coverage units</strong>.</p>
+<p><strong>Key constraint</strong>: CSM cannot be negative — if a contract group becomes onerous, the CSM is first reduced to zero, and any excess loss is immediately recognized.</p>
+</div>
+<div class="col col-terms"><h4>Key Terms</h4>
+<p><strong>contractual service margin</strong> /kənˈtræktʃuəl ˈsɜːvɪs ˈmɑːdʒɪn/ 合同服务边际</p>
+<p><strong>unearned profit</strong> /ʌnˈɜːnd ˈprɒfɪt/ 未实现利润</p>
+<p><strong>onerous contract</strong> /ˈɒnərəs ˈkɒntrækt/ 亏损性合同</p>
+<p><strong>net inflow</strong> /net ˈɪnfləʊ/ 净流入</p>
+<p><strong>roll-forward</strong> /rəʊl ˈfɔːwəd/ 滚动计量</p>
+<p><strong>non-negative</strong> /nɒn ˈneɡətɪv/ 不得为负</p>
+</div>
+</div>
+</div>
+
+<div class="section">
+<h2>2. Six Key Conclusions about CSM <span class="en">CSM 六大专论</span></h2>
+
+<div class="trilingual">
+<div class="col col-cn"><div class="lang-tab">中文</div>
+<p><strong>专论一：CSM 不得为负</strong><br>CSM 代表未实现的利润，因此其最低值为零。如果合同组变为亏损，首先将 CSM 冲减至零，剩余亏损部分立即计入当期损益，形成"亏损合同损失准备"（Loss Component）。</p>
+<p><strong>专论二：CSM 采用滚动方式后续计量</strong><br>每期末，CSM 以期初余额为起点，考虑当期新增、计息、未来服务相关变动、汇率变动和当期摊销，滚动计算至期末余额。这种"期初+调整=期末"的计量方式使 CSM 的变动过程透明可追溯。</p>
+<p><strong>专论三：滚动调整项顺序固定</strong><br>CSM 的五个调整项有严格的先后顺序：①新单增加 → ②计息 → ③与未来服务相关的履约现金流变动 → ④汇兑差额 → ⑤当期摊销。顺序不可颠倒，因为前序调整会影响后续调整的计算基础。</p>
+<p><strong>专论四：CSM 计息采用锁定折现率</strong><br>CSM 的计息和与未来服务相关的调整均采用<strong>初始确认时的锁定折现率</strong>（locked-in discount rate），而非当期折现率。这意味着折现率变动不会影响 CSM 的后续计量。只有在 VFA 下，因基础项目公允价值变动引起的实体份额变动才会通过 CSM 调整。</p>
+<p><strong>专论五：CSM 可吸收部分负债变化</strong><br>CSM 作为损益的"缓冲器"，可以吸收与未来服务直接相关的履约现金流变动（如经验调整、精算假设改变等），从而减少当期损益的波动性。但这仅限于与未来服务相关的变化，已发生赔款的变化不通过 CSM 吸收。</p>
+<p><strong>专论六：CSM 当期摊销基于保障责任单元</strong><br>CSM 在每个报告期末按<strong>保障责任单元</strong>（coverage units）的比例摊销计入损益。保障责任单元反映了企业在当期为保单持有人提供服务的数量和时间。摊销反映的是已赚利润的释放节奏。</p>
+</div>
+<div class="col col-en"><div class="lang-tab">English</div>
+<p><strong>Conclusion 1: CSM cannot be negative</strong><br>CSM represents unearned profit, so its floor is zero. If a contract group becomes onerous, the CSM is first written down to zero, and the remaining loss is recognized immediately in profit or loss, forming a "Loss Component."</p>
+<p><strong>Conclusion 2: CSM uses roll-forward subsequent measurement</strong><br>At each reporting date, the CSM is measured on a roll-forward basis: opening balance → new business added → interest accretion → changes related to future service → FX differences → amortization → closing balance. This transparent process allows traceability of all CSM movements.</p>
+<p><strong>Conclusion 3: Fixed order of roll-forward adjustments</strong><br>The five CSM adjustments follow a strict sequence: ① new contracts added → ② interest accretion → ③ changes in FCF related to future service → ④ foreign exchange differences → ⑤ amortization. The order cannot be changed because each prior adjustment affects the calculation base for subsequent adjustments.</p>
+<p><strong>Conclusion 4: CSM interest and adjustments use locked-in discount rate</strong><br>CSM interest accretion and adjustments related to future service both use the <strong>locked-in discount rate</strong> at initial recognition — not the current rate. This means discount rate changes do not affect subsequent CSM measurement. Only under VFA do changes in the entity's share of underlying items pass through CSM.</p>
+<p><strong>Conclusion 5: CSM absorbs certain liability changes</strong><br>CSM acts as a profit-or-loss "buffer," absorbing FCF changes directly related to future service (such as experience adjustments and actuarial assumption changes). This reduces P&L volatility. However, only changes related to future service are absorbed — changes in incurred claims bypass the CSM.</p>
+<p><strong>Conclusion 6: CSM amortization is based on coverage units</strong><br>CSM is amortized into profit or loss at each reporting date in proportion to <strong>coverage units</strong>. Coverage units reflect the quantity and duration of services provided to policyholders. Amortization represents the release pattern of earned profit.</p>
+</div>
+<div class="col col-terms"><h4>Key Terms</h4>
+<p><strong>locked-in rate</strong> /lɒkt ɪn reɪt/ 锁定折现率</p>
+<p><strong>loss component</strong> /lɒs kəmˈpəʊnənt/ 亏损合同损失准备</p>
+<p><strong>absorption</strong> /əbˈzɔːpʃən/ 吸收</p>
+<p><strong>future service</strong> /ˈfjuːtʃə ˈsɜːvɪs/ 未来服务</p>
+<p><strong>amortization</strong> /əˌmɔːtaɪˈzeɪʃən/ 摊销</p>
+<p><strong>P&L volatility</strong> /ˌvɒləˈtɪləti/ 损益波动性</p>
+<p><strong>traceability</strong> /ˌtreɪsəˈbɪləti/ 可追溯性</p>
+</div>
+</div>
+</div>
+
+<div class="section">
+<h2>3. CSM Initial Measurement <span class="en">CSM 初始计量</span></h2>
+<div class="trilingual">
+<div class="col col-cn"><div class="lang-tab">中文</div>
+<p>在保险合同组初始确认时，CSM 的计算公式如下：</p>
+<p>CSM 是在合同组层面，使"合同组确认的履约现金流金额合计"与"合同组应确认的零利润"之差。<strong>简单说：</strong></p>
+<p>如果合同组未来预期现金流入 &gt; 预期现金流出（盈利），则差额确认为 CSM；<br>如果预期现金流入 &le; 预期现金流出（亏损），则 CSM = 0，亏损立即计入损益。</p>
+<p><strong>注意</strong>：合同获取成本现金流（IACF）是履约现金流的重要组成部分，在初始计量时必须包含在内。</p>
+<p>以下为 BBA（通用模型）下初始确认时的完整公式：</p>
+</div>
+<div class="col col-en"><div class="lang-tab">English</div>
+<p>At initial recognition of a group of insurance contracts, the CSM is calculated as follows:</p>
+<p>The CSM is the amount that equates the group's total fulfilment cash flows to zero profit at inception. <strong>In simple terms:</strong></p>
+<p>If expected future cash inflows &gt; expected cash outflows (profitable), the difference is recognized as CSM;<br>If expected future cash inflows &le; expected cash outflows (loss-making), CSM = 0 and the loss is recognized immediately in P&L.</p>
+<p><strong>Note</strong>: Insurance acquisition cash flows (IACF) are a key component of fulfilment cash flows and must be included in the initial measurement.</p>
+<p>Below is the full formula under BBA at initial recognition:</p>
+</div>
+<div class="col col-terms"><h4>Key Terms</h4>
+<p><strong>initial recognition</strong> /ɪˈnɪʃəl ˌrekəɡˈnɪʃən/ 初始确认</p>
+<p><strong>IACF</strong> /iː-eɪ-siː-ef/ 合同获取成本现金流</p>
+<p><strong>net inflow</strong> /net ˈɪnfləʊ/ 净流入</p>
+<p><strong>zero profit</strong> /ˈzɪərəʊ ˈprɒfɪt/ 零利润</p>
+</div>
+</div>
+
+<div class="formula">
+<div class="label">CSM Initial Measurement Formula / CSM 初始计量公式</div>
+<div class="eq"><span class="var">CSM</span> = <span class="var">-(FCF)</span> = <span class="var">-(PVCF + RA)</span> = <span class="var">-(PVCF + IACF + RA)</span></div>
+<div class="eq" style="margin-top:8px">where: <span class="var">PVCF</span> = Present Value of Future Cash Flows (including premiums, claims, expenses, IACF)</div>
+<div class="eq"><span class="var">IACF</span> = Insurance Acquisition Cash Flows</div>
+<div class="eq"><span class="var">RA</span> = Risk Adjustment for non-financial risk</div>
+<div class="eq" style="margin-top:8px;color:var(--c-accent);">CSM &ge; 0, always. If -(FCF) &lt; 0, then CSM = 0 (onerous contract).</div>
+</div>
+
+<div class="callout warning">
+<div class="title">Important / 重要提示</div>
+<p>The formula CSM = -(FCF) applies only if the result is positive. If FCF is positive (net outflow), the contract is onerous and CSM = 0. / CSM = -(FCF) 仅当结果为正值时成立。如果 FCF 为正值（净流出），则该合同为亏损合同，CSM = 0。</p>
+</div>
+</div>
+
+<div class="section">
+<h2>4. CSM Roll-forward (Subsequent Measurement) <span class="en">CSM 滚动计量（后续计量）</span></h2>
+<div class="trilingual">
+<div class="col col-cn"><div class="lang-tab">中文</div>
+<p>在每个后续报告日，CSM 的计量采用<strong>滚动方式</strong>（roll-forward），即以期初余额为起点，按照以下<strong>固定顺序</strong>进行五项调整：</p>
+<ol>
+<li><strong>新单增加</strong> — 当期新增到合同组的合同产生的 CSM</li>
+<li><strong>计息</strong> — CSM 期初余额按照<strong>锁定折现率</strong>（初始确认时的利率）计提利息</li>
+<li><strong>与未来服务相关的履约现金流变动</strong> — 经验调整、精算假设改变等，若与未来服务相关，则被 CSM 吸收</li>
+<li><strong>汇兑差额</strong> — 功能货币与合同货币不一致时的外币折算差异</li>
+<li><strong>当期摊销</strong> — 按保障责任单元比例将 CSM 释放至损益</li>
+</ol>
+<p>调整顺序不可更改：前序调整会影响后续调整的计算基础。</p>
+</div>
+<div class="col col-en"><div class="lang-tab">English</div>
+<p>At each subsequent reporting date, the CSM is measured on a <strong>roll-forward basis</strong>. Starting from the opening balance, five adjustments are applied in <strong>fixed order</strong>:</p>
+<ol>
+<li><strong>New contracts added to the group</strong> — CSM arising from contracts newly added during the period</li>
+<li><strong>Interest accretion</strong> — Interest on the opening CSM balance accrued at the <strong>locked-in discount rate</strong> (the rate at initial recognition)</li>
+<li><strong>Changes in FCF related to future service</strong> — Experience adjustments and changes in actuarial assumptions that relate to future service are absorbed by the CSM</li>
+<li><strong>Foreign exchange differences</strong> — FX translation differences when the functional currency differs from the contract currency</li>
+<li><strong>Amortization for the period</strong> — CSM released to P&L in proportion to coverage units</li>
+</ol>
+<p>The adjustment order cannot be changed: each prior adjustment affects the calculation base for subsequent ones.</p>
+</div>
+<div class="col col-terms"><h4>Key Terms</h4>
+<p><strong>opening balance</strong> /ˈəʊpənɪŋ ˈbæləns/ 期初余额</p>
+<p><strong>interest accretion</strong> /ˈɪntrəst əˈkriːʃən/ 利息计提</p>
+<p><strong>functional currency</strong> /ˈfʌŋkʃənl ˈkʌrənsi/ 功能货币</p>
+<p><strong>FX differences</strong> /ef eks ˈdɪfərənsɪz/ 汇兑差额</p>
+<p><strong>release to P&L</strong> /rɪˈliːs tə piː ænd el/ 释放至损益</p>
+</div>
+</div>
+
+<div class="formula">
+<div class="label">CSM Roll-forward Formula / CSM 滚动计量公式</div>
+<div class="eq"><span class="var">CSM</span><sub>t</sub> = <span class="var">CSM</span><sub>t-1</sub> + <span class="var">&Delta;New</span> + <span class="var">Interest</span> + <span class="var">&Delta;FCF<sub>future</sub></span> + <span class="var">&Delta;FX</span> - <span class="var">Amort</span></div>
+<div class="eq" style="margin-top:8px;">① / ② / ③ / ④ / ⑤ → Fixed sequential order / 固定顺序依次调整</div>
+<div class="eq" style="margin-top:6px;font-size:12px;color:rgba(255,255,255,0.7);">
+  ① <span class="var">+New contracts</span> (新单增加) &nbsp;|&nbsp;
+  ② <span class="var">+Interest@locked-in rate</span> (计息) &nbsp;|&nbsp;
+  ③ <span class="var">±&Delta;FCF<sub>future</sub></span> (与未来服务相关的变动) &nbsp;|&nbsp;
+  ④ <span class="var">±&Delta;FX</span> (汇兑差额) &nbsp;|&nbsp;
+  ⑤ <span class="var">-Amortization</span> (当期摊销)
+</div>
+</div>
+
+<div class="callout info">
+<div class="title">Why Fixed Order? / 为什么顺序固定？</div>
+<p>Each adjustment changes the CSM balance, which then affects the base for the next adjustment. For example, interest accretion applies to the CSM balance after new contracts are added. Amortization is always the last step — it reflects the final CSM balance available for release. / 每一项调整都会改变 CSM 余额，进而影响下一项调整的计算基础。例如：计息适用于加入新单后的 CSM 余额。摊销始终是最后一步，反映可供释放的最终 CSM 余额。</p>
+</div>
+</div>
+
+<div class="section">
+<h2>5. Absorption Mechanism <span class="en">吸收机制</span></h2>
+<div class="trilingual">
+<div class="col col-cn"><div class="lang-tab">中文</div>
+<p><strong>CSM 的吸收机制</strong>是 IFRS 17 平滑损益波动的核心设计之一。与未来服务相关的履约现金流变动（包括经验调整）可以通过 CSM 吸收，而不直接计入当期损益。</p>
+<p>吸收机制的判断标准：该变动是否与<strong>未来的保障服务</strong>相关？如果是，则调整 CSM；如果否（如已发生赔款变动或金融假设变动），则直接计入损益或OCI。</p>
+<p><strong>注意</strong>：在浮动收费法（VFA）下，即使金融风险变动与未来服务相关，也会通过 CSM 吸收，这是 VFA 与 BBA 的一个关键差异。</p>
+</div>
+<div class="col col-en"><div class="lang-tab">English</div>
+<p><strong>CSM absorption mechanism</strong> is one of the core designs in IFRS 17 to smooth P&L volatility. Changes in FCF related to future service (including experience adjustments) can be absorbed by the CSM rather than being recognized directly in P&L.</p>
+<p>The criterion: is the change related to <strong>future coverage service</strong>? If yes, adjust the CSM. If no (e.g., incurred claims changes or financial assumption changes), recognize directly in P&L or OCI.</p>
+<p><strong>Note</strong>: Under VFA, even financial risk changes related to future service pass through the CSM — this is a key difference between VFA and BBA.</p>
+</div>
+<div class="col col-terms"><h4>Key Terms</h4>
+<p><strong>absorption</strong> /əbˈzɔːpʃən/ 吸收</p>
+<p><strong>experience adjustment</strong> /ɪkˈspɪəriəns əˈdʒʌstmənt/ 经验调整</p>
+<p><strong>smooth</strong> /smuːð/ 平滑</p>
+<p><strong>OCI</strong> /əʊ-siː-aɪ/ 其他综合收益</p>
+</div>
+</div>
+
+<h3 style="margin-top:16px;">Absorption vs. Non-Absorption Table / 吸收与不吸收对照表</h3>
+<table>
+<tr><th>Item / 项目</th><th>Absorbed by CSM? / 是否吸收</th><th>Where recognized / 确认位置</th><th>Remark / 备注</th></tr>
+<tr>
+  <td>Experience adjustments — Premium deviations<br><span class="muted">经验调整 — 保费偏差</span></td>
+  <td><span class="cat-badge insurance">ABSORBED</span></td>
+  <td>Adjust CSM</td>
+  <td>Relates to future service</td>
+</tr>
+<tr>
+  <td>Experience adjustments — Investment component deviations<br><span class="muted">经验调整 — 投资成分偏差</span></td>
+  <td><span class="cat-badge insurance">ABSORBED</span></td>
+  <td>Adjust CSM</td>
+  <td>Relates to future service</td>
+</tr>
+<tr>
+  <td>Experience adjustments — Expense deviations<br><span class="muted">经验调整 — 费用偏差</span></td>
+  <td><span class="cat-badge insurance">ABSORBED</span></td>
+  <td>Adjust CSM</td>
+  <td>Relates to future service</td>
+</tr>
+<tr>
+  <td>Changes in actuarial assumptions — future coverage<br><span class="muted">精算假设变动 — 与未来服务相关</span></td>
+  <td><span class="cat-badge insurance">ABSORBED</span></td>
+  <td>Adjust CSM</td>
+  <td>Non-financial risk</td>
+</tr>
+<tr>
+  <td>Time value of money / Financial risk changes<br><span class="muted">货币时间价值 / 金融风险变动</span></td>
+  <td><span class="cat-badge accounting">NOT ABSORBED</span></td>
+  <td>P&L or OCI</td>
+  <td>Except VFA — financial changes from underlying items absorbed by CSM</td>
+</tr>
+<tr>
+  <td>Incurred claims changes<br><span class="muted">已发生赔款变动</span></td>
+  <td><span class="cat-badge accounting">NOT ABSORBED</span></td>
+  <td>P&L (LIC)</td>
+  <td>Relates to past service, not future</td>
+</tr>
+<tr>
+  <td>Risk adjustment changes — future service<br><span class="muted">风险调整变动 — 与未来服务相关</span></td>
+  <td><span class="cat-badge insurance">ABSORBED</span></td>
+  <td>Adjust CSM</td>
+  <td>Except onerous contracts</td>
+</tr>
+<tr>
+  <td>Risk adjustment changes — incurred claims<br><span class="muted">风险调整变动 — 与已发生赔款相关</span></td>
+  <td><span class="cat-badge accounting">NOT ABSORBED</span></td>
+  <td>P&L (LIC)</td>
+  <td>Relates to past service</td>
+</tr>
+</table>
+
+<div class="callout success">
+<div class="title">Key Takeaway / 核心要义</div>
+<p>CSM absorbs changes related to <strong>future service only</strong>. Changes related to past service (incurred claims) and most financial risk changes bypass the CSM. The VFA is the exception — financial risk changes from underlying items are absorbed by CSM. / CSM 仅吸收与<strong>未来服务</strong>相关的变动。与过去服务（已发生赔款）相关的变动和大部分金融风险变动不经过 CSM。VFA 为例外——基础项目的金融风险变动被 CSM 吸收。</p>
+</div>
+</div>
+
+<div class="section">
+<h2>6. Coverage Unit <span class="en">保障责任单元</span></h2>
+<div class="trilingual">
+<div class="col col-cn"><div class="lang-tab">中文</div>
+<p><strong>保障责任单元</strong>（Coverage Unit, CU）是 CSM 摊销的基础。每期摊销额等于 CSM 余额乘以<strong>当期已提供的保障责任单元占整个合同组寿命期总保障责任单元的比例</strong>。</p>
+<p>保障责任单元的计算综合考虑：</p>
+<ul>
+<li><strong>保障数量</strong>（Quantity of coverage）— 如有效保单件数、保额等</li>
+<li><strong>保障期间</strong>（Coverage period）— 每份保单在当期提供了多长时间的保障</li>
+<li><strong>时间的流逝</strong>（Passage of time）— 保障责任单元随时间推移逐渐消耗</li>
+</ul>
+<p><strong>简单公式</strong>：</p>
+</div>
+<div class="col col-en"><div class="lang-tab">English</div>
+<p><strong>Coverage Units (CU)</strong> form the basis for CSM amortization. The amortization amount for each period equals the CSM balance multiplied by the <strong>proportion of coverage units provided in the current period relative to total coverage units over the group's lifetime</strong>.</p>
+<p>Coverage unit calculation considers:</p>
+<ul>
+<li><strong>Quantity of coverage</strong> — e.g., number of policies in force, sum insured</li>
+<li><strong>Coverage period</strong> — how long each policy provides coverage during the period</li>
+<li><strong>Passage of time</strong> — coverage units are consumed gradually over time</li>
+</ul>
+<p><strong>Simple formula</strong>:</p>
+</div>
+<div class="col col-terms"><h4>Key Terms</h4>
+<p><strong>coverage unit</strong> /ˈkʌvərɪdʒ ˈjuːnɪt/ 保障责任单元</p>
+<p><strong>proportion</strong> /prəˈpɔːʃən/ 比例</p>
+<p><strong>passage of time</strong> /ˈpæsɪdʒ əv taɪm/ 时间流逝</p>
+<p><strong>amortization rate</strong> /əˌmɔːtaɪˈzeɪʃən reɪt/ 摊销率</p>
+</div>
+</div>
+
+<div class="formula">
+<div class="label">CSM Amortization Formula / CSM 摊销公式</div>
+<div class="eq"><span class="var">Amortization</span><sub>t</sub> = <span class="var">CSM<sub>adj</sub></span> × (<span class="var">CU</span><sub>t</sub> / <span class="var">Total CU</span>)</div>
+<div class="eq" style="margin-top:6px;font-size:12px;color:rgba(255,255,255,0.7);">
+  where <span class="var">CSM<sub>adj</sub></span> = CSM after adjustments ①–④ (before amortization) &nbsp;|&nbsp;
+  <span class="var">CU<sub>t</sub></span> = coverage units provided in period t &nbsp;|&nbsp;
+  <span class="var">Total CU</span> = total coverage units over group's lifetime
+</div>
+</div>
+
+<div class="callout info">
+<div class="title">Example / 示例</div>
+<p>A 5-year term life policy has 100,000 CU total. In year 1, it provides 20,000 CU (20% of total). If the CSM after steps ①–④ is $10,000, the amortization for year 1 = $10,000 × 20% = $2,000. / 一份5年期定期寿险保单总保障责任单元为100,000。第1年提供20,000 CU（占总数的20%）。假设经历步骤①–④调整后CSM为10,000美元，则第1年摊销额 = 10,000 × 20% = 2,000美元。</p>
+</div>
+</div>
+
+<div class="section">
+<h2>7. Numerical Example <span class="en">数值案例</span></h2>
+<h3 style="margin-top:0;">3-Year Term Life Insurance / 3 年期定期寿险</h3>
+<div class="trilingual">
+<div class="col col-cn"><div class="lang-tab">中文</div>
+<p><strong>假设条件</strong>：</p>
+<ul>
+<li>某定期寿险合同组，保障期 3 年，期初一次性趸交保费 10,000 元</li>
+<li>预期死亡赔付 PV = 6,000 元，预期费用 PV = 1,000 元，获取成本 PV = 500 元</li>
+<li>RA（风险调整）= 500 元</li>
+<li>锁定折现率 = 3%</li>
+<li>保障责任单元均匀分布（每年 1/3）</li>
+<li>无新单、无汇率变动、无经验调整（简化处理）</li>
+</ul>
+</div>
+<div class="col col-en"><div class="lang-tab">English</div>
+<p><strong>Assumptions</strong>:</p>
+<ul>
+<li>A group of term life contracts, 3-year coverage, single premium of 10,000 paid at inception</li>
+<li>Expected death benefit PV = 6,000, expected expense PV = 1,000, acquisition cost PV = 500</li>
+<li>RA (risk adjustment) = 500</li>
+<li>Locked-in discount rate = 3%</li>
+<li>Coverage units evenly distributed (1/3 each year)</li>
+<li>No new business, no FX movements, no experience adjustments (simplified)</li>
+</ul>
+</div>
+<div class="col col-terms"><h4>Key Terms</h4>
+<p><strong>single premium</strong> /ˈsɪŋɡl ˈpriːmiəm/ 趸交保费</p>
+<p><strong>death benefit</strong> /deθ ˈbenɪfɪt/ 死亡赔付</p>
+<p><strong>evenly distributed</strong> /ˈiːvənli dɪˈstrɪbjuːtɪd/ 均匀分布</p>
+</div>
+</div>
+
+<div class="formula">
+<div class="label">Step 1: Initial Measurement / 第一步：初始计量</div>
+<div class="eq"><span class="var">FCF</span> = PV_premiums + PV_claims + PV_expenses + PV_IACF + RA</div>
+<div class="eq">= -10,000 + 6,000 + 1,000 + 500 + 500 = <span class="var">-2,000</span></div>
+<div class="eq" style="margin-top:6px;color:var(--c-accent);"><span class="var">CSM</span><sub>0</sub> = -(FCF) = 2,000 &nbsp;&nbsp;(net inflow → profitable contract / 净流入 → 盈利合同)</div>
+</div>
+
+<table>
+<tr><th>CSM Roll-forward</th><th>Year 1</th><th>Year 2</th><th>Year 3</th><th>Note / 说明</th></tr>
+<tr>
+  <td>① Opening CSM / 期初CSM</td>
+  <td>2,000</td>
+  <td>1,383</td>
+  <td>707</td>
+  <td>Initial = 2,000</td>
+</tr>
+<tr>
+  <td>② + Interest @ 3% / 计息</td>
+  <td>60</td>
+  <td>41</td>
+  <td>21</td>
+  <td>Locked-in rate / 锁定折现率</td>
+</tr>
+<tr>
+  <td>③ ± Changes in FCF (future service)</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>Simplified / 简化处理</td>
+</tr>
+<tr>
+  <td>④ ± FX differences / 汇兑差额</td>
+  <td>0</td>
+  <td>0</td>
+  <td>0</td>
+  <td>No FX / 无汇率影响</td>
+</tr>
+<tr>
+  <td><strong>Subtotal before amortization</strong></td>
+  <td><strong>2,060</strong></td>
+  <td><strong>1,424</strong></td>
+  <td><strong>728</strong></td>
+  <td>After ①–④</td>
+</tr>
+<tr>
+  <td>⑤ - Amortization (1/3 each year)</td>
+  <td>-677</td>
+  <td>-717</td>
+  <td>-728</td>
+  <td>CU proportion / 保障责任单元比例</td>
+</tr>
+<tr>
+  <td><strong>Closing CSM / 期末CSM</strong></td>
+  <td><strong>1,383</strong></td>
+  <td><strong>707</strong></td>
+  <td><strong>0</strong></td>
+  <td>Depleted at end of coverage</td>
+</tr>
+</table>
+
+<div class="callout success">
+<div class="title">Key Observation / 关键观察</div>
+<p>The total CSM amortization over 3 years (677 + 717 + 728 = 2,122) exceeds the initial CSM of 2,000. This is because the interest accretion (60 + 41 + 21 = 122) also flows into the amortization base. In effect, the CSM amortization reflects both the initial profit and the interest on unearned profit over the coverage period. / 三年期 CSM 总摊销额 (677 + 717 + 728 = 2,122) 超过了初始 CSM 的 2,000。这是因为计息额 (60 + 41 + 21 = 122) 也进入了摊销基础。实际上，CSM 摊销反映了初始利润加上保障期内未实现利润的利息。</p>
+</div>
+</div>
+
+<div class="section">
+<h2>8. Vocabulary Spotlight <span class="en">词汇聚焦</span></h2>
+<div class="vocab-spotlight">
+<div class="vocab-card">
+  <div class="vc-en">Contractual Service Margin</div>
+  <div class="vc-ipa">/kənˈtræktʃuəl ˈsɜːvɪs ˈmɑːdʒɪn/</div>
+  <div class="vc-cn">合同服务边际</div>
+</div>
+<div class="vocab-card">
+  <div class="vc-en">unearned profit</div>
+  <div class="vc-ipa">/ʌnˈɜːnd ˈprɒfɪt/</div>
+  <div class="vc-cn">未实现利润</div>
+</div>
+<div class="vocab-card">
+  <div class="vc-en">onerous contract</div>
+  <div class="vc-ipa">/ˈɒnərəs ˈkɒntrækt/</div>
+  <div class="vc-cn">亏损性合同</div>
+</div>
+<div class="vocab-card">
+  <div class="vc-en">roll-forward</div>
+  <div class="vc-ipa">/rəʊl ˈfɔːwəd/</div>
+  <div class="vc-cn">滚动计量</div>
+</div>
+<div class="vocab-card">
+  <div class="vc-en">locked-in discount rate</div>
+  <div class="vc-ipa">/lɒkt ɪn ˈdɪskaʊnt reɪt/</div>
+  <div class="vc-cn">锁定折现率</div>
+</div>
+<div class="vocab-card">
+  <div class="vc-en">coverage unit</div>
+  <div class="vc-ipa">/ˈkʌvərɪdʒ ˈjuːnɪt/</div>
+  <div class="vc-cn">保障责任单元</div>
+</div>
+<div class="vocab-card">
+  <div class="vc-en">absorption mechanism</div>
+  <div class="vc-ipa">/əbˈzɔːpʃən ˈmekənɪzəm/</div>
+  <div class="vc-cn">吸收机制</div>
+</div>
+<div class="vocab-card">
+  <div class="vc-en">loss component</div>
+  <div class="vc-ipa">/lɒs kəmˈpəʊnənt/</div>
+  <div class="vc-cn">亏损合同损失准备</div>
+</div>
+<div class="vocab-card">
+  <div class="vc-en">interest accretion</div>
+  <div class="vc-ipa">/ˈɪntrəst əˈkriːʃən/</div>
+  <div class="vc-cn">利息计提</div>
+</div>
+<div class="vocab-card">
+  <div class="vc-en">experience adjustment</div>
+  <div class="vc-ipa">/ɪkˈspɪəriəns əˈdʒʌstmənt/</div>
+  <div class="vc-cn">经验调整</div>
+</div>
+</div>
+</div>
+
+<div class="section">
+<h2>9. Reading Comprehension <span class="en">阅读理解</span></h2>
+<div class="quiz-section">
+<div class="quiz-question">
+<span class="q-type choice">Multiple Choice / 选择</span>
+<div class="q-text">1. At initial recognition, a group of insurance contracts has FCF = -5,000. What is the CSM at inception?</div>
+<ul class="quiz-options">
+<li onclick="showAnswer(this,false)">a) -5,000 (negative CSM)</li>
+<li onclick="showAnswer(this,false)">b) 0 (onerous contract, immediate loss)</li>
+<li onclick="showAnswer(this,true)">c) 5,000 (profitable contract, CSM = -FCF)</li>
+<li onclick="showAnswer(this,false)">d) 5,000 only if RA &gt; 0</li>
+</ul>
+<div class="quiz-answer">Correct: c) 5,000. Since FCF = -5,000 (net inflow / profitable), CSM = -(FCF) = -(-5,000) = 5,000. The contract is profitable, so unearned profit is recognized as CSM.</div>
+</div>
+
+<div class="quiz-question">
+<span class="q-type choice">Multiple Choice / 选择</span>
+<div class="q-text">2. Which of the following statements about the CSM roll-forward order is correct?</div>
+<ul class="quiz-options">
+<li onclick="showAnswer(this,false)">a) Interest accretion is applied last, after amortization</li>
+<li onclick="showAnswer(this,false)">b) New contracts are added after interest accretion</li>
+<li onclick="showAnswer(this,true)">c) Amortization is always the final step in the roll-forward</li>
+<li onclick="showAnswer(this,false)">d) The order of adjustments is flexible — entities can choose any sequence</li>
+</ul>
+<div class="quiz-answer">Correct: c). The roll-forward follows a fixed order: ① new contracts → ② interest → ③ FCF changes (future service) → ④ FX differences → ⑤ amortization. Amortization is always the last step because it applies to the final CSM balance after all prior adjustments.</div>
+</div>
+
+<div class="quiz-question">
+<span class="q-type tf">True or False / 判断</span>
+<div class="q-text">3. Under BBA, all changes in the time value of money and financial risk are absorbed by the CSM to reduce P&L volatility.</div>
+<ul class="quiz-options">
+<li onclick="showAnswer(this,false)">True</li>
+<li onclick="showAnswer(this,true)">False</li>
+</ul>
+<div class="quiz-answer">Correct: False. Under BBA, changes in financial risk and the time value of money are generally NOT absorbed by CSM — they are recognized in P&L or OCI. Only under VFA do certain financial risk changes from underlying items pass through CSM.</div>
+</div>
+</div>
+</div>
+
+<div class="section">
+<h2>10. Discussion Corner <span class="en">讨论角</span></h2>
+
+<div class="discussion">
+<div class="d-header">
+<div class="d-avatar">Q</div>
+<div>
+<div class="d-question">Why does IFRS 17 prohibit a negative CSM but allow a Loss Component? <span class="en">为什么 IFRS 17 禁止负值 CSM 但允许"亏损合同损失准备"？</span></div>
+<div class="d-meta">Posted by Learner · 2026</div>
+</div>
+</div>
+<p>The conceptual distinction is important. CSM represents <strong>unearned profit</strong> — by definition, profit cannot be negative. When a contract group is expected to result in a loss, the expected cash outflows exceed the inflows. Rather than recording "negative profit" (a logical impossibility), IFRS 17 requires the loss to be recognized immediately in P&L and tracked separately via a <strong>Loss Component</strong> within the LRC. This approach ensures transparency: profitable contracts are measured with CSM ≥ 0, while loss-making contracts are immediately highlighted through the Loss Component.</p>
+<p style="margin-top:12px;color:var(--c-primary);">对话讨论：CSM 代表"未实现利润"，利润不能为负。当合同组预期亏损时，资金流入小于流出。IFRS 17 不记录"负利润"，而是将亏损立即计入损益，并通过 LRC 中的"亏损合同损失准备"单独追踪。这保证了盈利合同的 CSM ≥ 0，亏损合同则通过损失准备立即暴露风险。</p>
+</div>
+
+<div class="discussion">
+<div class="d-header">
+<div class="d-avatar">Q</div>
+<div>
+<div class="d-question">What is the practical significance of using the locked-in discount rate for CSM? <span class="en">CSM 使用锁定折现率的实务意义是什么？</span></div>
+<div class="d-meta">Posted by Analyst · 2026</div>
+</div>
+</div>
+<p>Using the locked-in discount rate means that the CSM is insulated from market interest rate volatility. The initial profit margin (CSM) is measured at inception rates and subsequent CSM adjustments (except VFA financial risk) are computed using those same locked-in rates. This is consistent with the concept that CSM represents a fixed deferred profit pool — changes in market interest rates affect the carrying amount of the liability through FCF (which uses current rates) and the OCI/insurance finance income or expense, not through the CSM. This design prevents profit manipulation via discount rate selection and enhances comparability across reporting periods.</p>
+<p style="margin-top:12px;color:var(--c-primary);">锁定折现率使 CSM 免受市场利率波动的影响。初始利润（CSM）按初始日利率计量，除 VFA 金融风险外，后续 CSM 调整也使用同一锁定利率。这与 CSM 代表"固定递延利润池"的概念一致——市场利率变动通过 FCF（使用即期利率）和 OCI/保险财务损益影响负债账面价值，而不通过 CSM。此设计防止通过折现率选择操纵利润，增强报表间可比性。</p>
+</div>
+
+<div class="discussion">
+<div class="d-header">
+<div class="d-avatar">Q</div>
+<div>
+<div class="d-question">In practice, how do entities determine coverage units for CSM amortization? <span class="en">实务中如何确定保障责任单元？</span></div>
+<div class="d-meta">Posted by Practitioner · 2026</div>
+</div>
+</div>
+<p>Determining coverage units is one of the most judgment-intensive areas in IFRS 17. Common approaches include:</p>
+<ul>
+<li><strong>Quantity-based</strong>: Number of in-force policies, sum insured, or premium volume — weighted by time in force. This is common for protection products.</li>
+<li><strong>Time-based</strong>: Equal distribution over the coverage period (simplest approach, used when benefits are evenly distributed).</li>
+<li><strong>Benefit-based</strong>: Derive units from expected benefit payments (claims + expenses), reflecting that coverage service is tied to the benefits provided.</li>
+</ul>
+<p style="margin-top:12px;color:var(--c-primary);">保障责任单元的确定是 IFRS 17 中判断难度最高的领域之一。常用方法包括：按保单件数/保额/保费量乘以在保时间（适用于保障型产品）；按时间均匀分配（最简单，适用于保障均匀分布的情形）；按预期赔付流（赔款+费用）推导，反映保障服务与给付的关联。</p>
+</div>
+</div>
+
+<div class="footer">
+<p>Lesson 3 of 4 · <a href="03-measurement.html">← Measurement</a> | <a href="05-presentation.html">Next: Presentation →</a></p>
+<p style="margin-top:8px;">IFRS17 Bilingual Learning Forum · For educational purposes only · Not professional advice</p>
+<p>IFRS17 中英文对照学习论坛 · 仅供学习参考 · 不构成专业建议</p>
+</div>
+</div>
+
+<script>
+function showAnswer(li,isCorrect){var s=li.parentElement.querySelectorAll('li');s.forEach(function(x){x.classList.remove('correct','wrong')});li.classList.add(isCorrect?'correct':'wrong');li.closest('.quiz-question').querySelector('.quiz-answer').classList.add('show')}
+var v=JSON.parse(localStorage.getItem('ifrs17_bilingual_progress')||'[]');if(v.indexOf('csm')===-1){v.push('csm');localStorage.setItem('ifrs17_bilingual_progress',JSON.stringify(v))}
+</script>
+
+<!-- Follow WeChat Public Account -->
+<div class="follow-float">
+  <div class="follow-popup" id="followPopup">
+    <img class="fp-logo" src="xihong-logo.jpg" alt="西红精算">
+    <div class="fp-name">西红精算</div>
+    <div class="fp-tag">Actuary · IFRS17 Notes</div>
+    <img class="fp-qr" src="xihong-qrcode.jpg" alt="qrcode">
+    <div class="fp-cap">扫码关注公众号</div>
+  </div>
+  <button class="follow-fab" id="followFab" onclick="toggleFollow(event)" title="关注公众号">
+    <span class="fab-icon">📱</span><span class="fab-text">关注西红精算</span>
+  </button>
+</div>
+<script>
+function toggleFollow(e) {
+  e.stopPropagation();
+  var popup = document.getElementById('followPopup');
+  popup.classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  var popup = document.getElementById('followPopup');
+  if (popup.classList.contains('open') && !e.target.closest('.follow-float')) {
+    popup.classList.remove('open');
+  }
+});
+window.addEventListener('scroll', function() {
+  var popup = document.getElementById('followPopup');
+  if (popup.classList.contains('open')) popup.classList.remove('open');
+}, { passive: true });
+</script>
+
+</body>
+</html>
