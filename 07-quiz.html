@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IFRS17 Bilingual Quiz | 中英文互动测试</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.score-panel {
+  background: linear-gradient(135deg, var(--c-primary-dark), var(--c-primary));
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 32px;
+  text-align: center;
+  margin: 24px 0;
+}
+.score-panel .score-big {
+  font-size: 48px; font-weight: 700; color: var(--c-accent);
+}
+.score-panel .score-label { font-size: 14px; opacity: 0.8; margin-top: 4px; }
+.score-panel .score-bar-outer {
+  max-width: 400px; height: 12px; background: rgba(255,255,255,0.2);
+  border-radius: 6px; margin: 16px auto; overflow: hidden;
+}
+.score-panel .score-bar-inner {
+  height: 100%; background: var(--c-accent);
+  border-radius: 6px; transition: width 0.6s ease;
+}
+.score-detail { font-size: 16px; margin-top: 8px; }
+.score-breakdown { margin-top: 16px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.score-breakdown .sb-item {
+  background: rgba(255,255,255,0.1); padding: 10px 20px; border-radius: 8px;
+  text-align: center; min-width: 80px;
+}
+.score-breakdown .sb-num { font-size: 22px; font-weight: 700; }
+.score-breakdown .sb-label { font-size: 11px; opacity: 0.7; }
+
+.match-pairs {
+  display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: center;
+  margin: 16px 0;
+}
+.match-col { padding: 0; }
+.match-col h4 {
+  font-size: 13px; font-weight: 600; color: var(--c-primary);
+  margin-bottom: 8px; text-align: center;
+}
+.match-item {
+  padding: 8px 12px; border: 1px solid var(--c-border);
+  border-radius: 6px; margin-bottom: 6px; font-size: 13px;
+  background: var(--c-surface); text-align: center;
+}
+.match-col-left .match-item { background: #f0f5ff; border-color: #c4d7ff; font-family: var(--font-en); }
+.match-col-right .match-item { background: #fffdf5; border-color: #f0e4c0; }
+.match-arrow { font-size: 18px; color: var(--c-accent); text-align: center; font-weight: 700; }
+.match-answer-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  padding: 8px 0; border-bottom: 1px solid var(--c-border); font-size: 13px;
+}
+.match-answer-row:last-child { border-bottom: none; }
+.match-answer-row .ma-en { font-weight: 600; color: var(--c-primary-dark); font-family: var(--font-en); }
+.match-answer-row .ma-cn { color: var(--c-text); }
+
+.collapse-toggle {
+  display: inline-block; padding: 8px 20px; background: var(--c-primary);
+  color: #fff; border: none; border-radius: 6px; cursor: pointer;
+  font-size: 13px; font-weight: 600; transition: background .2s;
+}
+.collapse-toggle:hover { background: var(--c-primary-light); }
+.collapse-content { display: none; margin-top: 16px; }
+.collapse-content.show { display: block; }
+
+.tf-row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--c-border); }
+.tf-row:last-child { border-bottom: none; }
+.tf-q { flex: 1; font-size: 14px; }
+.tf-actions { display: flex; gap: 8px; flex-shrink: 0; }
+.tf-btn {
+  padding: 6px 16px; border: 1px solid var(--c-border); border-radius: 6px;
+  cursor: pointer; font-size: 13px; font-weight: 600; transition: all .2s;
+  background: var(--c-surface);
+}
+.tf-btn:hover { border-color: var(--c-primary); }
+.tf-btn.correct { background: var(--c-teal-light); border-color: var(--c-teal); color: var(--c-teal); }
+.tf-btn.wrong { background: #fcebeb; border-color: var(--c-red); color: var(--c-red); }
+.tf-feedback { font-size: 12px; color: var(--c-text-muted); margin-top: 4px; display: none; }
+.tf-feedback.show { display: block; }
+
+.mcq-separator { border-top: 1px solid var(--c-border); margin: 16px 0; }
+
+.intro-box {
+  background: var(--c-blue-light);
+  border-left: 4px solid var(--c-blue);
+  padding: 16px 20px;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 24px;
+}
+.intro-box p { margin: 0; font-size: 14px; }
+
+.quiz-nav {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px;
+}
+.quiz-nav a {
+  font-size: 12px; padding: 6px 14px; border-radius: 20px;
+  background: var(--c-bg); color: var(--c-text-secondary);
+  text-decoration: none; border: 1px solid var(--c-border);
+  transition: all .2s;
+}
+.quiz-nav a:hover { background: var(--c-primary); color: #fff; border-color: var(--c-primary); }
+
+@media (max-width: 768px) {
+  .match-pairs { grid-template-columns: 1fr; }
+  .match-arrow { transform: rotate(90deg); }
+  .score-breakdown { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="brand">IFRS17 <span>Bilingual Forum</span></div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="01-glossary.html">Glossary</a>
+    <a href="02-fundamentals.html">Fundamentals</a>
+    <a href="03-measurement.html">Measurement</a>
+    <a href="04-csm.html">CSM</a>
+    <a href="05-presentation.html">Presentation</a>
+    <a href="06-reading.html">Reading</a>
+    <a href="07-quiz.html" class="active">Quiz</a>
+    <a href="08-global.html">Global</a>
+    <a href="09-cas25-english.html">CAS25</a>
+    <a href="10-ifrs17-chinese.html">IFRS17 Std</a>
+    <a href="11-financial-statements.html">Report Format</a>
+    <a href="12-illustrative-examples.html">IE Examples</a>
+    <a href="13-hkfrs17.html">HKFRS17</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">Home</a><span class="sep">/</span>Module 4 · Quiz
+</div>
+
+<div class="container">
+
+  <div class="hero">
+    <h1>IFRS17 互动测验</h1>
+    <div class="en-title">Interactive Knowledge Quiz</div>
+    <p class="subtitle">包含4种题型，全面测试IFRS17知识和英文术语掌握程度</p>
+    <div class="hero-tags">
+      <span class="tag">Term Matching &#215; 10</span>
+      <span class="tag">Fill in Blank &#215; 10</span>
+      <span class="tag">Multiple Choice &#215; 15</span>
+      <span class="tag">True/False &#215; 10</span>
+      <span class="tag">Total: 45 Questions</span>
+    </div>
+  </div>
+
+  <div class="intro-box">
+    <p>Interactive quiz with 4 question types to test your IFRS17 knowledge and English terminology. Each question provides immediate feedback with detailed explanations. Your score is tracked across all sections in real time.</p>
+  </div>
+
+  <div class="quiz-nav">
+    <a href="#section1">Term Matching</a>
+    <a href="#section2">Fill in the Blank</a>
+    <a href="#section3">Multiple Choice</a>
+    <a href="#section4">True or False</a>
+    <a href="#score">Your Score</a>
+  </div>
+
+  <!-- ====== SECTION 1: TERM MATCHING ====== -->
+  <div class="section" id="section1">
+    <h2>Section 1 · Term Matching <span class="en">术语配对</span></h2>
+    <p style="font-size:13px;color:var(--c-text-secondary);margin-bottom:16px;">Match each English term with its correct Chinese definition. Mentally pair them, then check your answers below.</p>
+
+    <div class="match-pairs">
+      <div class="match-col match-col-left">
+        <h4>English Terms</h4>
+        <div class="match-item">1. Insurance Contract</div>
+        <div class="match-item">2. CSM</div>
+        <div class="match-item">3. Fulfilment Cash Flows</div>
+        <div class="match-item">4. Risk Adjustment</div>
+        <div class="match-item">5. BBA</div>
+        <div class="match-item">6. VFA</div>
+        <div class="match-item">7. PAA</div>
+        <div class="match-item">8. Coverage Unit</div>
+        <div class="match-item">9. Onerous Contract</div>
+        <div class="match-item">10. Liability for Remaining Coverage</div>
+      </div>
+      <div class="match-arrow">&#8596;</div>
+      <div class="match-col match-col-right">
+        <h4>Chinese Definitions (Shuffled)</h4>
+        <div class="match-item">A. 一般模型法</div>
+        <div class="match-item">B. 亏损合同</div>
+        <div class="match-item">C. 未到期责任负债</div>
+        <div class="match-item">D. 合同服务边际</div>
+        <div class="match-item">E. 保险合同</div>
+        <div class="match-item">F. 保障责任单元</div>
+        <div class="match-item">G. 履约现金流量</div>
+        <div class="match-item">H. 保费分配法</div>
+        <div class="match-item">I. 风险调整</div>
+        <div class="match-item">J. 可变费用法</div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:16px;">
+      <button class="collapse-toggle" onclick="document.getElementById('matchAnswers').classList.toggle('show')">Show / Hide Answers</button>
+    </div>
+    <div id="matchAnswers" class="collapse-content">
+      <div class="quiz-answer show" style="margin-top:12px;">
+        <strong>Correct Matching:</strong>
+      </div>
+      <div class="match-answer-row"><span class="ma-en">1. Insurance Contract</span><span class="ma-cn">&#8594; E. 保险合同</span></div>
+      <div class="match-answer-row"><span class="ma-en">2. CSM</span><span class="ma-cn">&#8594; D. 合同服务边际</span></div>
+      <div class="match-answer-row"><span class="ma-en">3. Fulfilment Cash Flows</span><span class="ma-cn">&#8594; G. 履约现金流量</span></div>
+      <div class="match-answer-row"><span class="ma-en">4. Risk Adjustment</span><span class="ma-cn">&#8594; I. 风险调整</span></div>
+      <div class="match-answer-row"><span class="ma-en">5. BBA</span><span class="ma-cn">&#8594; A. 一般模型法</span></div>
+      <div class="match-answer-row"><span class="ma-en">6. VFA</span><span class="ma-cn">&#8594; J. 可变费用法</span></div>
+      <div class="match-answer-row"><span class="ma-en">7. PAA</span><span class="ma-cn">&#8594; H. 保费分配法</span></div>
+      <div class="match-answer-row"><span class="ma-en">8. Coverage Unit</span><span class="ma-cn">&#8594; F. 保障责任单元</span></div>
+      <div class="match-answer-row"><span class="ma-en">9. Onerous Contract</span><span class="ma-cn">&#8594; B. 亏损合同</span></div>
+      <div class="match-answer-row"><span class="ma-en">10. Liability for Remaining Coverage</span><span class="ma-cn">&#8594; C. 未到期责任负债</span></div>
+    </div>
+  </div>
+
+  <!-- ====== SECTION 2: FILL IN THE BLANK ====== -->
+  <div class="section" id="section2">
+    <h2>Section 2 · Fill in the Blank <span class="en">选词填空</span></h2>
+    <p style="font-size:13px;color:var(--c-text-secondary);margin-bottom:16px;">Select the correct term to complete each English sentence. Click an option to see if you are right.</p>
+
+    <div class="quiz-section">
+      <!-- Q1 -->
+      <div class="quiz-question">
+        <span class="q-type fill">Fill</span>
+        <div class="q-text">1. The <strong>______</strong> represents the unearned profit of a group of insurance contracts.</div>
+        <ul class="quiz-options" id="fill1">
+          <li onclick="showAnswer(this, true, 'CSM (Contractual Service Margin) represents unearned profit that the entity will recognise as it provides service under insurance contracts.')">CSM</li>
+          <li onclick="showAnswer(this, false, '')">FCF</li>
+          <li onclick="showAnswer(this, false, '')">RA</li>
+          <li onclick="showAnswer(this, false, '')">LRC</li>
+        </ul>
+        <div class="quiz-answer" id="fill1-ans"></div>
+      </div>
+      <!-- Q2 -->
+      <div class="quiz-question">
+        <span class="q-type fill">Fill</span>
+        <div class="q-text">2. Under IFRS 17, the <strong>______</strong> model is the default measurement approach.</div>
+        <ul class="quiz-options" id="fill2">
+          <li onclick="showAnswer(this, false, '')">VFA</li>
+          <li onclick="showAnswer(this, false, '')">PAA</li>
+          <li onclick="showAnswer(this, true, 'BBA (Building Block Approach) is the default measurement model under IFRS 17, also known as the General Measurement Model.')">BBA</li>
+          <li onclick="showAnswer(this, false, '')">GMM</li>
+        </ul>
+        <div class="quiz-answer" id="fill2-ans"></div>
+      </div>
+      <!-- Q3 -->
+      <div class="quiz-question">
+        <span class="q-type fill">Fill</span>
+        <div class="q-text">3. The <strong>______</strong> approach is used for contracts with direct participation features.</div>
+        <ul class="quiz-options" id="fill3">
+          <li onclick="showAnswer(this, false, '')">BBA</li>
+          <li onclick="showAnswer(this, false, '')">PAA</li>
+          <li onclick="showAnswer(this, false, '')">GMM</li>
+          <li onclick="showAnswer(this, true, 'VFA (Variable Fee Approach) is required for insurance contracts with direct participation features where the entity expects to pay the policyholder a share of clearly identified underlying items.')">VFA</li>
+        </ul>
+        <div class="quiz-answer" id="fill3-ans"></div>
+      </div>
+      <!-- Q4 -->
+      <div class="quiz-question">
+        <span class="q-type fill">Fill</span>
+        <div class="q-text">4. The <strong>______</strong> determines which future cash flows are included in measurement.</div>
+        <ul class="quiz-options" id="fill4">
+          <li onclick="showAnswer(this, false, '')">discount rate</li>
+          <li onclick="showAnswer(this, false, '')">coverage period</li>
+          <li onclick="showAnswer(this, false, '')">risk adjustment</li>
+          <li onclick="showAnswer(this, true, 'Contract boundary defines the point at which the entity has the practical ability to reassess risks and reset pricing, beyond which cash flows are excluded from measurement.')">contract boundary</li>
+        </ul>
+        <div class="quiz-answer" id="fill4-ans"></div>
+      </div>
+      <!-- Q5 -->
+      <div class="quiz-question">
+        <span class="q-type fill">Fill</span>
+        <div class="q-text">5. Insurance service <strong>______</strong> excludes investment components.</div>
+        <ul class="quiz-options" id="fill5">
+          <li onclick="showAnswer(this, false, '')">expense</li>
+          <li onclick="showAnswer(this, false, '')">liability</li>
+          <li onclick="showAnswer(this, true, 'Insurance service revenue reflects the transfer of promised services and excludes investment components, which are not insurance service.')">revenue</li>
+          <li onclick="showAnswer(this, false, '')">asset</li>
+        </ul>
+        <div class="quiz-answer" id="fill5-ans"></div>
+      </div>
+      <!-- Q6 -->
+      <div class="quiz-question">
+        <span class="q-type fill">Fill</span>
+        <div class="q-text">6. The <strong>______</strong> is the compensation for bearing non-financial risk uncertainty.</div>
+        <ul class="quiz-options" id="fill6">
+          <li onclick="showAnswer(this, false, '')">CSM</li>
+          <li onclick="showAnswer(this, false, '')">discount rate</li>
+          <li onclick="showAnswer(this, false, '')">coverage unit</li>
+          <li onclick="showAnswer(this, true, 'Risk adjustment for non-financial risk compensates the entity for bearing the uncertainty about the amount and timing of cash flows from non-financial risk.')">risk adjustment</li>
+        </ul>
+        <div class="quiz-answer" id="fill6-ans"></div>
+      </div>
+      <!-- Q7 -->
+      <div class="quiz-question">
+        <span class="q-type fill">Fill</span>
+        <div class="q-text">7. The liability for remaining coverage consists of FCF for future service plus the <strong>______</strong>.</div>
+        <ul class="quiz-options" id="fill7">
+          <li onclick="showAnswer(this, false, '')">risk adjustment</li>
+          <li onclick="showAnswer(this, false, '')">investment component</li>
+          <li onclick="showAnswer(this, false, '')">insurance revenue</li>
+          <li onclick="showAnswer(this, true, 'The liability for remaining coverage (LRC) comprises the fulfilment cash flows related to future service and the CSM of the group of insurance contracts.')">CSM</li>
+        </ul>
+        <div class="quiz-answer" id="fill7-ans"></div>
+      </div>
+      <!-- Q8 -->
+      <div class="quiz-question">
+        <span class="q-type fill">Fill</span>
+        <div class="q-text">8. Contracts issued more than <strong>______</strong> year(s) apart cannot be in the same group.</div>
+        <ul class="quiz-options" id="fill8">
+          <li onclick="showAnswer(this, false, '')">two</li>
+          <li onclick="showAnswer(this, false, '')">three</li>
+          <li onclick="showAnswer(this, false, '')">five</li>
+          <li onclick="showAnswer(this, true, 'IFRS 17 requires that contracts issued more than one year apart cannot be in the same group, ensuring groups have reasonably similar risk profiles.')">one</li>
+        </ul>
+        <div class="quiz-answer" id="fill8-ans"></div>
+      </div>
+      <!-- Q9 -->
+      <div class="quiz-question">
+        <span class="q-type fill">Fill</span>
+        <div class="q-text">9. The <strong>______</strong> method for CSM amortization is based on the quantity of coverage provided.</div>
+        <ul class="quiz-options" id="fill9">
+          <li onclick="showAnswer(this, false, '')">straight-line</li>
+          <li onclick="showAnswer(this, false, '')">effective yield</li>
+          <li onclick="showAnswer(this, false, '')">premium-based</li>
+          <li onclick="showAnswer(this, true, 'Coverage units determine the proportion of CSM to be recognised in profit or loss in each period, reflecting the quantity of services provided.')">coverage unit</li>
+        </ul>
+        <div class="quiz-answer" id="fill9-ans"></div>
+      </div>
+      <!-- Q10 -->
+      <div class="quiz-question">
+        <span class="q-type fill">Fill</span>
+        <div class="q-text">10. An insurance contract is <strong>______</strong> if the fulfilment cash flows result in a net outflow.</div>
+        <ul class="quiz-options" id="fill10">
+          <li onclick="showAnswer(this, false, '')">profitable</li>
+          <li onclick="showAnswer(this, false, '')">discontinued</li>
+          <li onclick="showAnswer(this, true, 'An onerous contract is one where the fulfilment cash flows result in a net outflow, meaning the entity expects to lose money on the contract. The loss is recognised immediately in profit or loss.')">onerous</li>
+          <li onclick="showAnswer(this, false, '')">reinsured</li>
+        </ul>
+        <div class="quiz-answer" id="fill10-ans"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== SECTION 3: MULTIPLE CHOICE ====== -->
+  <div class="section" id="section3">
+    <h2>Section 3 · Multiple Choice <span class="en">单项选择题</span></h2>
+    <p style="font-size:13px;color:var(--c-text-secondary);margin-bottom:16px;">Select the best answer for each IFRS 17 question. Topics covered: scope, definition, grouping, measurement models, CSM, risk adjustment, discount rate, OCI option, presentation, and transition.</p>
+
+    <div class="quiz-section">
+
+      <!-- MCQ 1 -->
+      <div class="quiz-question">
+        <span class="q-type choice">Choice</span>
+        <div class="q-text">1. Which of the following is within the scope of IFRS 17?</div>
+        <ul class="quiz-options" id="mcq1">
+          <li onclick="showAnswer(this, false, 'Product warranties are covered by IFRS 15, not IFRS 17.')">Product warranties issued by a manufacturer</li>
+          <li onclick="showAnswer(this, true, 'Insurance contracts issued by an entity, including reinsurance contracts issued, are within the scope of IFRS 17.')">Insurance contracts issued by an entity</li>
+          <li onclick="showAnswer(this, false, 'Employer obligations under employee benefit plans are covered by IAS 19.')">Employer obligations under employee benefit plans</li>
+          <li onclick="showAnswer(this, false, 'Financial guarantee contracts are generally within IFRS 9 unless the entity previously asserted they are insurance contracts.')">All financial guarantee contracts</li>
+        </ul>
+        <div class="quiz-answer" id="mcq1-ans"></div>
+      </div>
+
+      <!-- MCQ 2 -->
+      <div class="quiz-question">
+        <span class="q-type choice">Choice</span>
+        <div class="q-text">2. An insurance contract must transfer:</div>
+        <ul class="quiz-options" id="mcq2">
+          <li onclick="showAnswer(this, false, 'Financial risk is not sufficient — a contract must transfer insurance risk to qualify.')">Financial risk only</li>
+          <li onclick="showAnswer(this, false, 'Market risk alone does not qualify as insurance risk under IFRS 17.')">Market risk only</li>
+          <li onclick="showAnswer(this, true, 'The definition of an insurance contract requires significant insurance risk transfer from the policyholder to the issuer.')">Significant insurance risk</li>
+          <li onclick="showAnswer(this, false, 'Operational risk transfer is not the criterion under IFRS 17.')">Operational risk</li>
+        </ul>
+        <div class="quiz-answer" id="mcq2-ans"></div>
+      </div>
+
+      <!-- MCQ 3 -->
+      <div class="quiz-question">
+        <span class="q-type choice">Choice</span>
+        <div class="q-text">3. Under IFRS 17, contracts must be grouped into portfolios that contain:</div>
+        <ul class="quiz-options" id="mcq3">
+          <li onclick="showAnswer(this, false, 'All contracts may not have similar risks.')">All contracts of the entity</li>
+          <li onclick="showAnswer(this, true, 'Contracts are grouped into portfolios of contracts with similar risks and managed together. Each portfolio is divided into groups: onerous, no significant possibility of becoming onerous, and remaining.')">Contracts with similar risks and managed together</li>
+          <li onclick="showAnswer(this, false, 'The product line is one factor, but grouping is more specific.')">Only contracts of the same product line</li>
+          <li onclick="showAnswer(this, false, 'Contracts across calendar years can be in different groups only if within one year, and grouping rules still apply.')">Only contracts from the same calendar year</li>
+        </ul>
+        <div class="quiz-answer" id="mcq3-ans"></div>
+      </div>
+
+      <!-- MCQ 4 -->
+      <div class="quiz-question">
+        <span class="q-type choice">Choice</span>
+        <div class="q-text">4. The General Measurement Model (GMM/BBA) measures insurance contract liabilities as:</div>
+        <ul class="quiz-options" id="mcq4">
+          <li onclick="showAnswer(this, false, 'This omits the CSM, which is a key component.')">Fulfilment cash flows only</li>
+          <li onclick="showAnswer(this, true, 'GMM measures insurance contract liabilities as the total of fulfilment cash flows (probability-weighted estimates of future cash flows, discounted, plus risk adjustment) and the CSM.')">Fulfilment cash flows plus CSM</li>
+          <li onclick="showAnswer(this, false, 'Unearned premiums alone are not the measurement basis under GMM.')">Unearned premiums only</li>
+          <li onclick="showAnswer(this, false, 'Best estimate liability is a component of fulfilment cash flows but does not include the risk adjustment or CSM.')">Best estimate liability only</li>
+        </ul>
+        <div class="quiz-answer" id="mcq4-ans"></div>
+      </div>
+
+      <!-- MCQ 5 -->
+      <div class="quiz-question">
+        <span class="q-type choice">Choice</span>
+        <div class="q-text">5. The CSM is adjusted at each reporting date for:</div>
+        <ul class="quiz-options" id="mcq5">
+          <li onclick="showAnswer(this, true, 'The CSM is adjusted for the effect of new contracts added, interest accreted, changes in fulfilment cash flows relating to future service, the effect of currency exchange differences, and the amount recognised as insurance revenue.')">Effect of new contracts, interest accretion, changes in FCF for future service, and release to revenue</li>
+          <li onclick="showAnswer(this, false, 'Cash flows alone do not capture all CSM adjustments.')">Changes in cash flows from the group only</li>
+          <li onclick="showAnswer(this, false, 'Changes in discount rates alone are insufficient.')">Changes in discount rates only</li>
+          <li onclick="showAnswer(this, false, 'Premium volume changes alone are insufficient.')">Changes in premium volume only</li>
+        </ul>
+        <div class="quiz-answer" id="mcq5-ans"></div>
+      </div>
+
+      <!-- MCQ 6 -->
+      <div class="quiz-question">
+        <span class="q-type choice">Choice</span>
+        <div class="q-text">6. Which statement about the risk adjustment for non-financial risk is correct?</div>
+        <ul class="quiz-options" id="mcq6">
+          <li onclick="showAnswer(this, false, 'It is disclosed but is part of the measurement.')">It is only disclosed, not measured</li>
+          <li onclick="showAnswer(this, false, 'There is no fixed percentage requirement.')">It must equal 75th percentile</li>
+          <li onclick="showAnswer(this, true, 'The risk adjustment for non-financial risk is compensation for bearing the uncertainty about the amount and timing of cash flows from non-financial risk. It is a component of fulfilment cash flows.')">It compensates for bearing uncertainty about non-financial risk</li>
+          <li onclick="showAnswer(this, false, 'It is included in measurement, not only in profit or loss.')">It is recognised only in profit or loss</li>
+        </ul>
+        <div class="quiz-answer" id="mcq6-ans"></div>
+      </div>
+
+      <!-- MCQ 7 -->
+      <div class="quiz-question">
+        <span class="q-type choice">Choice</span>
+        <div class="q-text">7. Under IFRS 17, discount rates used to measure insurance contracts should:</div>
+        <ul class="quiz-options" id="mcq7">
+          <li onclick="showAnswer(this, false, 'This is the approach under some previous regimes, not IFRS 17.')">Be locked in at inception</li>
+          <li onclick="showAnswer(this, true, 'IFRS 17 requires discount rates to reflect the characteristics of the cash flows and be consistent with observable current market prices. Rates are updated each reporting period.')">Reflect the characteristics of the cash flows and current market conditions</li>
+          <li onclick="showAnswer(this, false, 'A single risk-free rate may not reflect the characteristics of insurance cash flows.')">Always be the risk-free rate</li>
+          <li onclick="showAnswer(this, false, 'Entity-specific rates are not permitted as the basis.')">Be the entity\'s own cost of capital</li>
+        </ul>
+        <div class="quiz-answer" id="mcq7-ans"></div>
+      </div>
+
+      <!-- MCQ 8 -->
+      <div class="quiz-question">
+        <span class="q-type choice">Choice</span>
+        <div class="q-text">8. The OCI option under IFRS 17 allows:</div>
+        <ul class="quiz-options" id="mcq8">
+          <li onclick="showAnswer(this, false, 'CSM is not recognised in OCI.')">CSM changes to be presented in OCI</li>
+          <li onclick="showAnswer(this, true, 'Entities can choose to disaggregate the effect of changes in discount rates between profit or loss and OCI, reducing accounting mismatches when financial assets are measured at FVOCI.')">Disaggregation of insurance finance income or expenses between profit or loss and OCI</li>
+          <li onclick="showAnswer(this, false, 'Risk adjustment is part of FCF and is not presented in OCI.')">Risk adjustment to be presented in OCI</li>
+          <li onclick="showAnswer(this, false, 'The option relates to presentation, not exemption from measurement.')">Exemption from measuring insurance contract liabilities</li>
+        </ul>
+        <div class="quiz-answer" id="mcq8-ans"></div>
+      </div>
+
+      <!-- MCQ 9 -->
+      <div class="quiz-question">
+        <span class="q-type choice">Choice</span>
+        <div class="q-text">9. On the statement of financial position, insurance contract assets and liabilities are:</div>
+        <ul class="quiz-options" id="mcq9">
+          <li onclick="showAnswer(this, false, 'They are presented separately on the face of the statement.')">Netted with reinsurance</li>
+          <li onclick="showAnswer(this, false, 'IFRS 17 requires separate line items.')">Included in trade receivables</li>
+          <li onclick="showAnswer(this, false, 'They are presented as separate line items, not within other categories.')">Included in other liabilities</li>
+          <li onclick="showAnswer(this, true, 'IFRS 17 requires separate presentation of insurance contract assets and liabilities on the face of the statement of financial position.')">Presented as separate line items on the face</li>
+        </ul>
+        <div class="quiz-answer" id="mcq9-ans"></div>
+      </div>
+
+      <!-- MCQ 10 -->
+      <div class="quiz-question">
+        <span class="q-type choice">Choice</span>
+        <div class="q-text">10. The Premium Allocation Approach (PAA) can be used when:</div>
+        <ul class="quiz-options" id="mcq10">
+          <li onclick="showAnswer(this, false, 'All short-duration contracts do not automatically qualify; the coverage period must be one year or less.')">For all short-duration contracts</li>
+          <li onclick="showAnswer(this, true, 'The PAA is an optional simplification permitted when the coverage period is one year or less, or if the entity expects the PAA measurement would not differ materially from the GMM.')">Coverage period is one year or less, or PAA would not differ materially from GMM</li>
+          <li onclick="showAnswer(this, false, 'Only non-life contracts is not the criterion.')">For non-life insurance contracts only</li>
+          <li onclick="showAnswer(this, false, 'This is a mandatory requirement, not an optional simplification.')">It is mandatory for small entities</li>
+        </ul>
+        <div class="quiz-answer" id="mcq10-ans"></div>
+      </div>
+
+      <!-- MCQ 11 -->
+      <div class="quiz-question">
+        <span class="q-type choice">Choice</span>
+        <div class="q-text">11. Under IFRS 17, insurance revenue in a period represents:</div>
+        <ul class="quiz-options" id="mcq11">
+          <li onclick="showAnswer(this, false, 'Premiums received are not revenue — only the transfer of service is.')">Premiums received in the period</li>
+          <li onclick="showAnswer(this, false, 'Underwriting profit is not the definition of insurance revenue.')">Underwriting profit for the period</li>
+          <li onclick="showAnswer(this, true, 'Insurance revenue reflects the transfer of promised services in the period. It excludes investment components and comprises CSM release, change in risk adjustment, expected claims and expenses, and other items.')">The transfer of promised services, excluding investment components</li>
+          <li onclick="showAnswer(this, false, 'Total cash inflows overstate revenue because they include investment components and premiums that relate to future periods.')">Total cash inflows from policyholders</li>
+        </ul>
+        <div class="quiz-answer" id="mcq11-ans"></div>
+      </div>
+
+      <!-- MCQ 12 -->
+      <div class="quiz-question">
+        <span class="q-type choice">Choice</span>
+        <div class="q-text">12. For the VFA model, changes in the entity\'s share of underlying items adjust:</div>
+        <ul class="quiz-options" id="mcq12">
+          <li onclick="showAnswer(this, false, 'FCF is not adjusted for this under VFA.')">Fulfilment cash flows only</li>
+          <li onclick="showAnswer(this, false, 'Risk adjustment is not adjusted for underlying items.')">Risk adjustment only</li>
+          <li onclick="showAnswer(this, true, 'Under VFA, the CSM is adjusted for the entity\'s share of changes in the fair value of underlying items, reflecting the variable fee nature of the contract.')">The CSM</li>
+          <li onclick="showAnswer(this, false, 'Insurance revenue is not directly adjusted.')">Insurance revenue only</li>
+        </ul>
+        <div class="quiz-answer" id="mcq12-ans"></div>
+      </div>
+
+      <!-- MCQ 13 -->
+      <div class="quiz-question">
+        <span class="q-type choice">Choice</span>
+        <div class="q-text">13. The transition requirements of IFRS 17 apply:</div>
+        <ul class="quiz-options" id="mcq13">
+          <li onclick="showAnswer(this, false, 'Transition applies at the start of the annual period, not at contract inception.')">From contract inception</li>
+          <li onclick="showAnswer(this, true, 'IFRS 17 is applied retrospectively unless impracticable; then either the modified retrospective approach or the fair value approach may be used.')">Retrospectively, with modified retrospective or fair value approaches if impracticable</li>
+          <li onclick="showAnswer(this, false, 'Prospective only is not sufficient — IFRS 17 requires retrospective application where possible.')">Prospectively from the effective date only</li>
+          <li onclick="showAnswer(this, false, 'Only new contracts would not capture the existing portfolio at transition.')">Only for contracts issued after the transition date</li>
+        </ul>
+        <div class="quiz-answer" id="mcq13-ans"></div>
+      </div>
+
+      <!-- MCQ 14 -->
+      <div class="quiz-question">
+        <span class="q-type choice">Choice</span>
+        <div class="q-text">14. Investment components in insurance contracts are:</div>
+        <ul class="quiz-options" id="mcq14">
+          <li onclick="showAnswer(this, false, 'They are not recognised as revenue.')">Recognised as insurance revenue</li>
+          <li onclick="showAnswer(this, true, 'Investment components are amounts that an insurance contract requires the entity to repay even if no insured event occurs. They are excluded from insurance revenue and insurance service expenses.')">Excluded from insurance revenue and insurance service expenses</li>
+          <li onclick="showAnswer(this, false, 'They are not capitalised as assets.')">Capitalised as contract assets</li>
+          <li onclick="showAnswer(this, false, 'They remain part of the insurance liability, not removed from the balance sheet.')">Removed from the statement of financial position</li>
+        </ul>
+        <div class="quiz-answer" id="mcq14-ans"></div>
+      </div>
+
+      <!-- MCQ 15 -->
+      <div class="quiz-question">
+        <span class="q-type choice">Choice</span>
+        <div class="q-text">15. When an onerous group of contracts is identified:</div>
+        <ul class="quiz-options" id="mcq15">
+          <li onclick="showAnswer(this, false, 'The loss cannot be deferred.')">The loss is deferred as an asset</li>
+          <li onclick="showAnswer(this, false, 'The CSM is not created for onerous contracts.')">A negative CSM is established</li>
+          <li onclick="showAnswer(this, true, 'For onerous contracts, the net outflow (excess of FCF over zero CSM) is recognised immediately as a loss in profit or loss, and a loss component of the LRC is created.')">The net outflow is recognised immediately in profit or loss as a loss component of LRC</li>
+          <li onclick="showAnswer(this, false, 'This would be contrary to the requirements.')">The contracts are excluded from IFRS 17 scope</li>
+        </ul>
+        <div class="quiz-answer" id="mcq15-ans"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ====== SECTION 4: TRUE OR FALSE ====== -->
+  <div class="section" id="section4">
+    <h2>Section 4 · True or False <span class="en">判断题</span></h2>
+    <p style="font-size:13px;color:var(--c-text-secondary);margin-bottom:16px;">Evaluate each statement about IFRS 17. Click True or False to see the answer.</p>
+
+    <div class="quiz-section">
+      <!-- TF 1 -->
+      <div class="tf-row">
+        <div class="tf-q">1. IFRS 17 requires an entity to identify insurance contracts based on whether significant insurance risk is transferred.</div>
+        <div class="tf-actions">
+          <button class="tf-btn" onclick="showTF(this, true, 1, 'Correct. Significant insurance risk transfer is a defining criterion under IFRS 17.')">True</button>
+          <button class="tf-btn" onclick="showTF(this, false, 1, '')">False</button>
+        </div>
+      </div>
+      <div class="tf-feedback" id="tf1-fb"></div>
+      <!-- TF 2 -->
+      <div class="tf-row">
+        <div class="tf-q">2. The CSM can never be negative.</div>
+        <div class="tf-actions">
+          <button class="tf-btn" onclick="showTF(this, false, 2, '')">True</button>
+          <button class="tf-btn" onclick="showTF(this, true, 2, 'Correct. The CSM cannot be negative. If FCF results in a net outflow, the contract is onerous and the loss is recognised immediately, not as a negative CSM.')">False</button>
+        </div>
+      </div>
+      <div class="tf-feedback" id="tf2-fb"></div>
+      <!-- TF 3 -->
+      <div class="tf-row">
+        <div class="tf-q">3. IFRS 17 allows an entity to choose between the BBA, VFA, and PAA for any insurance contract.</div>
+        <div class="tf-actions">
+          <button class="tf-btn" onclick="showTF(this, false, 3, '')">True</button>
+          <button class="tf-btn" onclick="showTF(this, true, 3, 'Correct. The choice is not free. VFA is mandatory for contracts with direct participation features. PAA eligibility is restricted. BBA/GMM is the default.')">False</button>
+        </div>
+      </div>
+      <div class="tf-feedback" id="tf3-fb"></div>
+      <!-- TF 4 -->
+      <div class="tf-row">
+        <div class="tf-q">4. Under IFRS 17, insurance revenue is recognised as the entity provides services under the contract.</div>
+        <div class="tf-actions">
+          <button class="tf-btn" onclick="showTF(this, true, 4, 'Correct. Insurance revenue reflects the transfer of promised services during the period, consistent with the accrual principle.')">True</button>
+          <button class="tf-btn" onclick="showTF(this, false, 4, '')">False</button>
+        </div>
+      </div>
+      <div class="tf-feedback" id="tf4-fb"></div>
+      <!-- TF 5 -->
+      <div class="tf-row">
+        <div class="tf-q">5. Reinsurance contracts held are accounted for under the same IFRS 17 measurement models as insurance contracts issued.</div>
+        <div class="tf-actions">
+          <button class="tf-btn" onclick="showTF(this, false, 5, '')">True</button>
+          <button class="tf-btn" onclick="showTF(this, true, 5, 'Correct. Reinsurance contracts held use adapted measurement models under IFRS 17, reflecting that they are assets rather than liabilities, with key differences such as the CSM treatment.')">False</button>
+        </div>
+      </div>
+      <div class="tf-feedback" id="tf5-fb"></div>
+      <!-- TF 6 -->
+      <div class="tf-row">
+        <div class="tf-q">6. The level of aggregation for IFRS 17 is the portfolio of contracts, not individual contracts.</div>
+        <div class="tf-actions">
+          <button class="tf-btn" onclick="showTF(this, false, 6, '')">True</button>
+          <button class="tf-btn" onclick="showTF(this, true, 6, 'Correct. The level of aggregation is the group of contracts, which is a subdivision of a portfolio. Groups must be at least: onerous, no significant possibility of becoming onerous, and remaining.')">False</button>
+        </div>
+      </div>
+      <div class="tf-feedback" id="tf6-fb"></div>
+      <!-- TF 7 -->
+      <div class="tf-row">
+        <div class="tf-q">7. The discount rates used in IFRS 17 are locked in at initial recognition and never updated.</div>
+        <div class="tf-actions">
+          <button class="tf-btn" onclick="showTF(this, false, 7, '')">True</button>
+          <button class="tf-btn" onclick="showTF(this, true, 7, 'Correct. Discount rates are updated at each reporting date to reflect current market conditions, unlike the locked-in approach under some previous standards.')">False</button>
+        </div>
+      </div>
+      <div class="tf-feedback" id="tf7-fb"></div>
+      <!-- TF 8 -->
+      <div class="tf-row">
+        <div class="tf-q">8. Insurance service expenses include incurred claims and other incurred service expenses.</div>
+        <div class="tf-actions">
+          <button class="tf-btn" onclick="showTF(this, true, 8, 'Correct. Insurance service expenses are the costs of providing insurance coverage, including incurred claims, attributable expenses, and amortisation of insurance acquisition cash flows.')">True</button>
+          <button class="tf-btn" onclick="showTF(this, false, 8, '')">False</button>
+        </div>
+      </div>
+      <div class="tf-feedback" id="tf8-fb"></div>
+      <!-- TF 9 -->
+      <div class="tf-row">
+        <div class="tf-q">9. Under the PAA, the liability for remaining coverage is measured similarly to the unearned premium approach under previous standards.</div>
+        <div class="tf-actions">
+          <button class="tf-btn" onclick="showTF(this, true, 9, 'Correct. Under PAA, the LRC at initial recognition is measured as premiums received minus acquisition cash flows (unless the entity chooses to expense them). It is similar to the unearned premium approach but with IFRS 17-specific adjustments.')">True</button>
+          <button class="tf-btn" onclick="showTF(this, false, 9, '')">False</button>
+        </div>
+      </div>
+      <div class="tf-feedback" id="tf9-fb"></div>
+      <!-- TF 10 -->
+      <div class="tf-row">
+        <div class="tf-q">10. IFRS 17 requires all insurance acquisition cash flows to be expensed immediately.</div>
+        <div class="tf-actions">
+          <button class="tf-btn" onclick="showTF(this, false, 10, '')">True</button>
+          <button class="tf-btn" onclick="showTF(this, true, 10, 'Correct. Insurance acquisition cash flows are included in the measurement of the group of contracts to which they relate and are recognised as the entity provides services, not expensed immediately.')">False</button>
+        </div>
+      </div>
+      <div class="tf-feedback" id="tf10-fb"></div>
+    </div>
+  </div>
+
+  <!-- ====== SCORE PANEL ====== -->
+  <div class="score-panel" id="score">
+    <div class="score-label">Your Overall Score</div>
+    <div class="score-big" id="scorePercent">0%</div>
+    <div class="score-detail" id="scoreFraction">0 / 35 scored</div>
+    <div class="score-bar-outer">
+      <div class="score-bar-inner" id="scoreBar" style="width:0%"></div>
+    </div>
+    <div class="score-breakdown">
+      <div class="sb-item">
+        <div class="sb-num" id="fillScore">0/10</div>
+        <div class="sb-label">Fill in Blank</div>
+      </div>
+      <div class="sb-item">
+        <div class="sb-num" id="mcqScore">0/15</div>
+        <div class="sb-label">Multiple Choice</div>
+      </div>
+      <div class="sb-item">
+        <div class="sb-num" id="tfScore">0/10</div>
+        <div class="sb-label">True/False</div>
+      </div>
+    </div>
+    <div style="margin-top:16px;">
+      <button class="collapse-toggle" onclick="resetAllQuiz()" style="background:var(--c-accent);">Reset All Answers</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  IFRS17 Bilingual Learning Forum · Interactive Quiz · Module 4 Review
+</div>
+
+<script>
+// Scoring counters
+var fillCorrect = 0, fillAnswered = new Set();
+var mcqCorrect = 0, mcqAnswered = new Set();
+var tfCorrect = 0, tfAnswered = new Set();
+
+function showAnswer(el, isCorrect, explanation) {
+  var qEl = el.closest('.quiz-question');
+  var ansEl = qEl.querySelector('.quiz-answer');
+  var options = qEl.querySelectorAll('.quiz-options li');
+  var qId = qEl.querySelector('.quiz-options').id;
+
+  // Prevent re-scoring if already answered
+  if (qId.startsWith('fill') && fillAnswered.has(qId)) return;
+  if (qId.startsWith('mcq') && mcqAnswered.has(qId)) return;
+
+  // Mark all options
+  options.forEach(function(opt) { opt.style.pointerEvents = 'none'; });
+  el.classList.add(isCorrect ? 'correct' : 'wrong');
+
+  // Show the correct answer (first correct option)
+  options.forEach(function(opt) {
+    var firstOption = opt.parentElement.querySelector('[onclick*="true"]');
+    // Remove any previous correct class and re-add
+  });
+  // Re-add correct class to all correct options
+  options.forEach(function(opt) {
+    if (opt.getAttribute('onclick') && opt.getAttribute('onclick').indexOf('true') > -1) {
+      opt.classList.add('correct');
+    }
+  });
+
+  // Show explanation
+  if (ansEl) {
+    ansEl.textContent = (isCorrect ? ' Correct! ' : ' Incorrect. ') + (explanation || '');
+    ansEl.classList.add('show');
+  }
+
+  // Track score
+  if (qId.startsWith('fill')) {
+    fillAnswered.add(qId);
+    if (isCorrect) fillCorrect++;
+    document.getElementById('fillScore').textContent = fillCorrect + '/10';
+  } else if (qId.startsWith('mcq')) {
+    mcqAnswered.add(qId);
+    if (isCorrect) mcqCorrect++;
+    document.getElementById('mcqScore').textContent = mcqCorrect + '/15';
+  }
+  updateOverallScore();
+}
+
+function showTF(el, isCorrect, num, explanation) {
+  var fbEl = document.getElementById('tf' + num + '-fb');
+  if (tfAnswered.has('tf' + num)) return;
+
+  tfAnswered.add('tf' + num);
+
+  // Highlight the correct button
+  var row = el.closest('.tf-row');
+  var buttons = row.querySelectorAll('.tf-btn');
+  buttons.forEach(function(btn) {
+    btn.style.pointerEvents = 'none';
+    var btnIsTrue = btn.textContent.trim() === 'True';
+    if (btnIsTrue === isCorrect) {
+      btn.classList.add('correct');
+    } else {
+      btn.classList.add('wrong');
+    }
+  });
+
+  if (fbEl) {
+    fbEl.textContent = explanation;
+    fbEl.classList.add('show');
+  }
+
+  if (isCorrect) tfCorrect++;
+  document.getElementById('tfScore').textContent = tfCorrect + '/10';
+  updateOverallScore();
+}
+
+function updateOverallScore() {
+  var totalCorrect = fillCorrect + mcqCorrect + tfCorrect;
+  var totalAnswered = fillAnswered.size + mcqAnswered.size + tfAnswered.size;
+  var totalPossible = 35; // 10 + 15 + 10
+  var pct = totalPossible > 0 ? Math.round(totalCorrect / totalPossible * 100) : 0;
+
+  document.getElementById('scorePercent').textContent = pct + '%';
+  document.getElementById('scoreFraction').textContent = totalCorrect + ' / ' + totalPossible + ' scored (' + totalAnswered + ' answered)';
+  document.getElementById('scoreBar').style.width = pct + '%';
+}
+
+function resetAllQuiz() {
+  // Reset fill and mcq
+  document.querySelectorAll('.quiz-options li').forEach(function(el) {
+    el.classList.remove('correct', 'wrong');
+    el.style.pointerEvents = '';
+  });
+  document.querySelectorAll('.quiz-answer').forEach(function(el) {
+    el.textContent = '';
+    el.classList.remove('show');
+  });
+
+  // Reset TF
+  document.querySelectorAll('.tf-btn').forEach(function(el) {
+    el.classList.remove('correct', 'wrong');
+    el.style.pointerEvents = '';
+  });
+  document.querySelectorAll('.tf-feedback').forEach(function(el) {
+    el.textContent = '';
+    el.classList.remove('show');
+  });
+
+  // Reset scores
+  fillCorrect = 0; fillAnswered.clear();
+  mcqCorrect = 0; mcqAnswered.clear();
+  tfCorrect = 0; tfAnswered.clear();
+
+  document.getElementById('fillScore').textContent = '0/10';
+  document.getElementById('mcqScore').textContent = '0/15';
+  document.getElementById('tfScore').textContent = '0/10';
+  updateOverallScore();
+}
+</script>
+
+
+<!-- Follow WeChat Public Account -->
+<div class="follow-float">
+  <div class="follow-popup" id="followPopup">
+    <img class="fp-logo" src="xihong-logo.jpg" alt="西红精算">
+    <div class="fp-name">西红精算</div>
+    <div class="fp-tag">Actuary · IFRS17 Notes</div>
+    <img class="fp-qr" src="xihong-qrcode.jpg" alt="qrcode">
+    <div class="fp-cap">扫码关注公众号</div>
+  </div>
+  <button class="follow-fab" id="followFab" onclick="toggleFollow(event)" title="关注公众号">
+    <span class="fab-icon">📱</span><span class="fab-text">关注西红精算</span>
+  </button>
+</div>
+<script>
+function toggleFollow(e) {
+  e.stopPropagation();
+  var popup = document.getElementById('followPopup');
+  popup.classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  var popup = document.getElementById('followPopup');
+  if (popup.classList.contains('open') && !e.target.closest('.follow-float')) {
+    popup.classList.remove('open');
+  }
+});
+window.addEventListener('scroll', function() {
+  var popup = document.getElementById('followPopup');
+  if (popup.classList.contains('open')) popup.classList.remove('open');
+}, { passive: true });
+</script>
+
+</body>
+</html>
